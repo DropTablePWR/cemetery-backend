@@ -1,0 +1,22 @@
+# it is not production configuration!!!
+spring:
+  profiles:
+    active: local #it means that some config properties will be overridden by application-local.yml or application-local.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    database: mysql
+  datasource:
+    url: $MASK$URL
+    hikari:
+      username: $MASK$USERNAME
+      password: $MASK$PASSWORD
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jooq:
+    sql-dialect: mysql
+server:
+  error:
+    include-binding-errors: always
+    include-exception: true
+    include-message: always
