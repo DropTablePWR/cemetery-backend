@@ -49,6 +49,8 @@ create table guests
     last_name varchar(64) null,
     birth_date date not null,
     death_date date null,
+    constraint guests_pk
+        primary key (id),
     constraint Guests_tombstones_id_fk
         foreign key (tombstone_id) references tombstones (id)
             on update cascade on delete cascade
