@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "5c7d3d71-3aed-488d-a192-b08ca875c976",
+		"name": "Cemetery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create cemetery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Learn Hibernate\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Bania u CygaaaanaCygasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaana\",\r\n    \"type\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cemetery",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update cemetery",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Wow\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Ble ble\",\r\n    \"type\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cemetery/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update cemetery - Not found",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Wow\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Ble ble\",\r\n    \"type\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cemetery/-5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"-5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cemetery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get all cemeteries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
