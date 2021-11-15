@@ -1,21 +1,21 @@
 package com.droptablepwr.cemetery.controller;
 
 import com.droptablepwr.cemetery.model.Cemetery;
+import com.droptablepwr.cemetery.model.projection.CemeteryFullRead;
+import com.droptablepwr.cemetery.model.projection.CemeteryInfoBasic;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cemetery")
@@ -27,32 +27,49 @@ public class CemeteryController {
     }
 
     @PostMapping
-    ResponseEntity<?> createNewCemetery(@RequestBody @Valid Cemetery cemetery){
+    ResponseEntity<?> createNewCemetery(@RequestBody @Valid Cemetery cemetery) {
         Cemetery created = cemeteryRepository.save(cemetery);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id,@RequestBody @Valid Cemetery newVal){
+    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid Cemetery newVal) {
         Optional<Cemetery> result = cemeteryRepository.findById(id);
-        if (result.isPresent()){
+        if (result.isPresent()) {
             Cemetery oldVal = result.get();
             oldVal.setAll(newVal);
-            Cemetery saved = cemeteryRepository.save(oldVal);
-            return ResponseEntity.ok(saved);
+            cemeteryRepository.save(oldVal);
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
-    Optional<Cemetery> getCemetery(@PathVariable("id") Integer id){
-        return cemeteryRepository.findById(id);
+    ResponseEntity<?> getInfoCemetery(@PathVariable("id") Integer id) {
+        return cemeteryRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteCemetery(@PathVariable("id") Integer id) {
+        if (cemeteryRepository.existsById(id)) {
+            cemeteryRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/all")
+    ResponseEntity<?> getFullCemetery(@PathVariable("id") Integer id) {
+        return cemeteryRepository.findById(id)
+                .map(CemeteryFullRead::generateCemeteryFullRead)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 
     @GetMapping
-    List<Cemetery> getAllCemeteries(){
-        return cemeteryRepository.findAll();
+    List<?> getAllCemeteries() {
+        return cemeteryRepository.findBy(CemeteryInfoBasic.class);
     }
 
 
@@ -61,7 +78,7 @@ public class CemeteryController {
     public Map<String, String> handleSQLIntegrityException(
             ConstraintViolationException ex) {
         Map<String, String> errors = new HashMap<>();
-        errors.put(ex.getConstraintName(),ex.getCause().getMessage());
+        errors.put(ex.getConstraintName(), ex.getCause().getMessage());
         return errors;
     }
 

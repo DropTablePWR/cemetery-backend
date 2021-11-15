@@ -3,6 +3,7 @@ package com.droptablepwr.cemetery.model;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.persistence.*;
 import javax.validation.Constraint;
@@ -12,6 +13,7 @@ import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.util.Set;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -48,6 +50,15 @@ public class Cemetery {
     @NotNull
     @Column(name = "type", nullable = false)
     private Integer type;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cemetery_id")
+    private Set<CemeteriesForbiddenPosition> forbiddenPositions;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cemetery_id")
+    private Set<Tombstone> tombstones;
+
 
     public Cemetery() {
     }
@@ -108,13 +119,29 @@ public class Cemetery {
         this.id = id;
     }
 
+    public Set<CemeteriesForbiddenPosition> getForbiddenPositions() {
+        return forbiddenPositions;
+    }
 
-    public void setAll(Cemetery newVal){
+    public void setForbiddenPositions(Set<CemeteriesForbiddenPosition> forbiddenPositions) {
+        this.forbiddenPositions = forbiddenPositions;
+    }
+
+    public Set<Tombstone> getTombstones() {
+        return tombstones;
+    }
+
+    public void setTombstones(Set<Tombstone> tombstones) {
+        this.tombstones = tombstones;
+    }
+
+    public void setAll(Cemetery newVal) {
         this.setDescription(newVal.getDescription());
         this.setName(newVal.getName());
         this.setType(newVal.getType());
         this.setMaxGridX(newVal.getMaxGridX());
         this.setMaxGridY(newVal.getMaxGridY());
+        this.setForbiddenPositions(newVal.getForbiddenPositions());
     }
 
 
