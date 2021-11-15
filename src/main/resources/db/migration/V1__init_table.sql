@@ -2,7 +2,7 @@ create table cemeteries
 (
     id int auto_increment,
     name varchar(64) not null,
-    description int not null,
+    description varchar(200) not null,
     max_grid_x int not null,
     max_grid_y int not null,
     type int default 0 not null,
