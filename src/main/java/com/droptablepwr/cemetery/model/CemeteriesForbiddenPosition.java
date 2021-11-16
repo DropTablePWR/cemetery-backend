@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 public class CemeteriesForbiddenPosition {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

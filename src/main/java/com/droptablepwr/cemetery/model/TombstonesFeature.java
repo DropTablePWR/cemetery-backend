@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 public class TombstonesFeature {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

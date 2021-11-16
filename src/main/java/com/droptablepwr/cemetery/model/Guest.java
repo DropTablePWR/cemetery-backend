@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 public class Guest implements GuestInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -29,6 +30,17 @@ public class Guest implements GuestInfo {
 
     @Column(name = "death_date")
     private LocalDate deathDate;
+
+    public Guest() {
+    }
+
+    public Guest(String firstName, String lastName, LocalDate birthDate, LocalDate deathDate, Tombstone tombstone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+        this.tombstone = tombstone;
+    }
 
     public LocalDate getDeathDate() {
         return deathDate;

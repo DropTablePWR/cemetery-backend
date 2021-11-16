@@ -6,46 +6,19 @@
 	},
 	"item": [
 		{
-			"name": "Create cemetery",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Learn Hibernate\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Bania u Cygana2sd1\",\r\n    \"type\": 1\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/cemetery",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get cemetery",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/10",
+					"raw": "localhost:8080/cemetery/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"cemetery",
-						"10"
+						"1"
 					]
 				}
 			},
@@ -57,14 +30,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/10/all",
+					"raw": "localhost:8080/cemetery/1/all",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"cemetery",
-						"10",
+						"1",
 						"all"
 					]
 				}
@@ -84,6 +57,126 @@
 					"port": "8080",
 					"path": [
 						"cemetery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tombstones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cemetery/1/tombstone",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1",
+						"tombstone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get selected tombstone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cemetery/1/tombstone/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1",
+						"tombstone",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create empty tombstone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"guest\": null,\r\n    \"gridY\": 1,\r\n    \"gridX\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cemetery/1/tombstone",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1",
+						"tombstone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create tombstone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"gridY\": 1,\r\n    \"gridX\": 0,\r\n    \"guest\": {\r\n        \"birthDate\": \"1981-11-03\",\r\n        \"lastName\": \"Tytus\",\r\n        \"firstName\": \"Bomba\",\r\n        \"deathDate\": \"2020-11-16\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cemetery/1/tombstone",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1",
+						"tombstone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove tombstone",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cemetery/1/tombstone/11",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cemetery",
+						"1",
+						"tombstone",
+						"11"
 					]
 				}
 			},

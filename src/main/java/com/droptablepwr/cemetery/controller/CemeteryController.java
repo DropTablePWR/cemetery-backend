@@ -4,7 +4,6 @@ import com.droptablepwr.cemetery.model.Cemetery;
 import com.droptablepwr.cemetery.model.projection.CemeteryFullReadModel;
 import com.droptablepwr.cemetery.model.projection.CemeteryInfoAdvanced;
 import com.droptablepwr.cemetery.model.projection.CemeteryInfoBasic;
-import com.droptablepwr.cemetery.model.projection.CemeteryWriteModel;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +25,12 @@ public class CemeteryController {
         this.cemeteryRepository = cemeteryRepository;
     }
 
-    @PostMapping
-    ResponseEntity<?> createNewCemetery(@RequestBody @Valid CemeteryWriteModel cemetery) {
-        Cemetery created = cemeteryRepository.save(cemetery.generateCemetery());
-        return ResponseEntity.ok(created);
-    }
+//    not important
+//    @PostMapping
+//    ResponseEntity<?> createNewCemetery(@RequestBody @Valid CemeteryWriteModel cemetery) {
+//        Cemetery created = cemeteryRepository.save(cemetery.generateCemetery());
+//        return ResponseEntity.ok(created);
+//    }
 // not important
 //    @PutMapping("/{id}")
 //    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid CemeteryWriteModel cemetery) {

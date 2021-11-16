@@ -10,6 +10,7 @@ import javax.persistence.*;
 @JsonSerialize(as = TombstoneInfo.class)
 public class Tombstone implements TombstoneInfo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -23,8 +24,18 @@ public class Tombstone implements TombstoneInfo {
     @Column(name = "grid_y", nullable = false)
     private Integer gridY;
 
-    @OneToOne(mappedBy = "tombstone")
+    @OneToOne(mappedBy = "tombstone", cascade = CascadeType.ALL)
     private Guest guest;
+
+    public Tombstone() {
+    }
+
+    public Tombstone(Cemetery cemetery, Integer gridX, Integer gridY, Guest guest) {
+        this.cemetery = cemetery;
+        this.gridX = gridX;
+        this.gridY = gridY;
+        this.guest = guest;
+    }
 
     public Integer getGridY() {
         return gridY;
