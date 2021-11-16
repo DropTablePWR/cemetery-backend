@@ -10,12 +10,12 @@ import javax.validation.ValidatorFactory;
 @SpringBootApplication
 public class CemeteryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CemeteryApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CemeteryApplication.class, args);
+    }
 
-	@Bean
-	public ValidatorFactory validatorFactory(){
-		return Validation.buildDefaultValidatorFactory();
-	}
+    @Bean
+    public ValidatorFactory validatorFactory() {
+        return Validation.buildDefaultValidatorFactory();
+    }
 }

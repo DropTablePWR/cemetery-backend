@@ -1,24 +1,10 @@
 package com.droptablepwr.cemetery.model;
 
 import com.droptablepwr.cemetery.model.projection.CemeteryWriteModel;
-import com.droptablepwr.cemetery.repository.CemeteryRepository;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
-import javax.validation.constraints.NotNull;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
 import java.util.HashSet;
 import java.util.Set;
-
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Table(name = "cemeteries", indexes = {
         @Index(name = "Cemeteries_name_uindex", columnList = "name", unique = true)

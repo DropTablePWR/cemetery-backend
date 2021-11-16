@@ -1,6 +1,6 @@
 package com.droptablepwr.cemetery.model;
 
-import org.springframework.context.annotation.Primary;
+import com.droptablepwr.cemetery.model.projection.GuestInfo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,12 +9,12 @@ import java.time.LocalDate;
         @Index(name = "Guests_tombstone_id_uindex", columnList = "tombstone_id", unique = true)
 })
 @Entity
-public class Guest {
+public class Guest implements GuestInfo {
     @Id
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "tombstone_id", nullable = false)
     private Tombstone tombstone;
 

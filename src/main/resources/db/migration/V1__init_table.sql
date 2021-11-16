@@ -15,7 +15,7 @@ create unique index Cemeteries_name_uindex
 
 create table cemeteries_forbidden_positions
 (
-    id int not null,
+    id int auto_increment,
     cemetery_id int not null,
     from_x1 int not null,
     from_y1 int not null,
@@ -30,7 +30,7 @@ create table cemeteries_forbidden_positions
 
 create table tombstones
 (
-    id int not null,
+    id int auto_increment,
     cemetery_id int not null,
     grid_x int not null,
     grid_y int not null,
@@ -43,7 +43,7 @@ create table tombstones
 
 create table guests
 (
-    id int not null,
+    id int auto_increment,
     tombstone_id int not null,
     first_name varchar(64) not null,
     last_name varchar(64) null,
@@ -61,7 +61,7 @@ create unique index Guests_tombstone_id_uindex
 
 create table features
 (
-    id int not null,
+    id int auto_increment,
     name varchar(64) not null,
     code varchar(64) not null,
     constraint features_pk
@@ -70,7 +70,7 @@ create table features
 
 create table tombstones_features
 (
-    id int not null,
+    id int auto_increment,
     tombstone_id int not null,
     feature_id int not null,
     place varchar(64) not null,

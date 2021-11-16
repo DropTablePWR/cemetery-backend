@@ -5,6 +5,7 @@ import com.droptablepwr.cemetery.model.Cemetery;
 import com.droptablepwr.cemetery.model.Tombstone;
 import com.droptablepwr.cemetery.model.field.CemeteryField;
 import com.droptablepwr.cemetery.model.field.EmptyCemeteryField;
+import com.droptablepwr.cemetery.model.field.ForbiddenCemeteryField;
 import com.droptablepwr.cemetery.model.field.TombstoneCemeteryField;
 
 import java.util.Arrays;
@@ -13,14 +14,11 @@ public class CemeteryFullReadModel {
 
     private final Integer id;
 
-
     private final String name;
-
 
     private final String description;
 
     private final Integer type;
-
 
     private final CemeteryField[][] area;
 
@@ -69,7 +67,7 @@ public class CemeteryFullReadModel {
                 }
             }
         }
-        for (Tombstone tombstone : cemetery.getTombstones()){
+        for (Tombstone tombstone : cemetery.getTombstones()) {
             area[tombstone.getGridX()][tombstone.getGridY()] = new TombstoneCemeteryField(tombstone);
         }
 

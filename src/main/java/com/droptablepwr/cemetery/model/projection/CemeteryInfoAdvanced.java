@@ -30,12 +30,4 @@ public interface CemeteryInfoAdvanced {
 
         Integer getFromY2();
     }
-
-    interface TombstoneInfo {
-        Integer getId();
-
-        Integer getGridX();
-
-        Integer getGridY();
-    }
 }

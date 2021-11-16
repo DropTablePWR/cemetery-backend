@@ -17,7 +17,6 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/cemetery")
@@ -33,32 +32,33 @@ public class CemeteryController {
         Cemetery created = cemeteryRepository.save(cemetery.generateCemetery());
         return ResponseEntity.ok(created);
     }
-
-    @PutMapping("/{id}")
-    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid CemeteryWriteModel cemetery) {
-        Optional<Cemetery> result = cemeteryRepository.findById(id, Cemetery.class);
-        if (result.isPresent()) {
-            Cemetery oldVal = result.get();
-            oldVal.change(cemetery);
-            cemeteryRepository.save(oldVal);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
+// not important
+//    @PutMapping("/{id}")
+//    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid CemeteryWriteModel cemetery) {
+//        Optional<Cemetery> result = cemeteryRepository.findById(id, Cemetery.class);
+//        if (result.isPresent()) {
+//            Cemetery oldVal = result.get();
+//            oldVal.change(cemetery);
+//            cemeteryRepository.save(oldVal);
+//            return ResponseEntity.noContent().build();
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
 
     @GetMapping("/{id}")
     ResponseEntity<?> getInfoCemetery(@PathVariable("id") Integer id) {
         return cemeteryRepository.findById(id, CemeteryInfoAdvanced.class).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    ResponseEntity<?> deleteCemetery(@PathVariable("id") Integer id) {
-        if (cemeteryRepository.existsById(id)) {
-            cemeteryRepository.deleteById(id);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
+// not important
+//    @DeleteMapping("/{id}")
+//    ResponseEntity<?> deleteCemetery(@PathVariable("id") Integer id) {
+//        if (cemeteryRepository.existsById(id)) {
+//            cemeteryRepository.deleteById(id);
+//            return ResponseEntity.ok().build();
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
 
     @GetMapping("/{id}/all")
     ResponseEntity<?> getFullCemetery(@PathVariable("id") Integer id) {

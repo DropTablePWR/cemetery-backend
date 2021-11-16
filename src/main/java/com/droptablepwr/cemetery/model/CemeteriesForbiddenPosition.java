@@ -25,6 +25,16 @@ public class CemeteriesForbiddenPosition {
     @Column(name = "from_y2", nullable = false)
     private Integer fromY2;
 
+    public CemeteriesForbiddenPosition(Integer fromX1, Integer fromY1, Integer fromX2, Integer fromY2) {
+        this.fromX1 = fromX1;
+        this.fromY1 = fromY1;
+        this.fromX2 = fromX2;
+        this.fromY2 = fromY2;
+    }
+
+    public CemeteriesForbiddenPosition() {
+    }
+
     public Integer getFromY2() {
         return fromY2;
     }
