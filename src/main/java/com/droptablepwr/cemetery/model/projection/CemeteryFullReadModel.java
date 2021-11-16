@@ -2,10 +2,14 @@ package com.droptablepwr.cemetery.model.projection;
 
 import com.droptablepwr.cemetery.model.CemeteriesForbiddenPosition;
 import com.droptablepwr.cemetery.model.Cemetery;
-import com.droptablepwr.cemetery.model.CemeteryField;
-import com.droptablepwr.cemetery.model.ForbiddenCemeteryField;
+import com.droptablepwr.cemetery.model.Tombstone;
+import com.droptablepwr.cemetery.model.field.CemeteryField;
+import com.droptablepwr.cemetery.model.field.EmptyCemeteryField;
+import com.droptablepwr.cemetery.model.field.TombstoneCemeteryField;
 
-public class CemeteryFullRead {
+import java.util.Arrays;
+
+public class CemeteryFullReadModel {
 
     private final Integer id;
 
@@ -20,7 +24,7 @@ public class CemeteryFullRead {
 
     private final CemeteryField[][] area;
 
-    private CemeteryFullRead(Integer id, String name, String description, Integer type, CemeteryField[][] area) {
+    private CemeteryFullReadModel(Integer id, String name, String description, Integer type, CemeteryField[][] area) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -28,8 +32,8 @@ public class CemeteryFullRead {
         this.area = area;
     }
 
-    public static CemeteryFullRead generateCemeteryFullRead(Cemetery cemetery) {
-        return new CemeteryFullRead(
+    public static CemeteryFullReadModel generateCemeteryFullRead(Cemetery cemetery) {
+        return new CemeteryFullReadModel(
                 cemetery.getId(),
                 cemetery.getName(),
                 cemetery.getDescription(),
@@ -40,35 +44,36 @@ public class CemeteryFullRead {
 
     private static CemeteryField[][] generateArea(Cemetery cemetery) {
         CemeteryField[][] area = new CemeteryField[cemetery.getMaxGridX()][cemetery.getMaxGridY()];
-        for (CemeteriesForbiddenPosition forbiddenPosition : cemetery.getForbiddenPositions()){
+        CemeteryField defVal = new EmptyCemeteryField();
+        Arrays.stream(area).forEach(cemeteryFields -> Arrays.fill(cemeteryFields, defVal));
+
+        for (CemeteriesForbiddenPosition forbiddenPosition : cemetery.getForbiddenPositions()) {
             Integer x1 = forbiddenPosition.getFromX1();
             Integer x2 = forbiddenPosition.getFromX2();
             Integer y1 = forbiddenPosition.getFromY1();
             Integer y2 = forbiddenPosition.getFromY2();
             Integer temp;
-            if (x1 > x2){
+            if (x1 > x2) {
                 temp = x1;
                 x1 = x2;
                 x2 = temp;
             }
-            if (y1 > y2){
+            if (y1 > y2) {
                 temp = y1;
                 y1 = y2;
                 y2 = temp;
             }
             for (int x = x1; x <= x2; x++) {
-                for (int y = y1; y1 <= y2; y++) {
+                for (int y = y1; y <= y2; y++) {
                     area[x][y] = new ForbiddenCemeteryField();
                 }
             }
         }
-        return area;
-    }
+        for (Tombstone tombstone : cemetery.getTombstones()){
+            area[tombstone.getGridX()][tombstone.getGridY()] = new TombstoneCemeteryField(tombstone);
+        }
 
-    private static void swap(Integer a, Integer b){
-        Integer temp = a;
-        a = b;
-        b = temp;
+        return area;
     }
 
     public Integer getId() {

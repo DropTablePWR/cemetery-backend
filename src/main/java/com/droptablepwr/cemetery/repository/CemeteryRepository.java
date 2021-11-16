@@ -21,5 +21,6 @@ public interface CemeteryRepository extends JpaRepository<Cemetery, Integer> {
 //    @Query("select c from Cemetery c")
     <T> List<T> findBy(Class<T> type);
 
+    <T> Optional<T> findById(Integer id, Class<T> type);
 
 }

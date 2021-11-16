@@ -1,5 +1,6 @@
 package com.droptablepwr.cemetery.model;
 
+import com.droptablepwr.cemetery.model.projection.CemeteryWriteModel;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+import java.util.HashSet;
 import java.util.Set;
 
 import static java.lang.annotation.ElementType.FIELD;
@@ -28,36 +30,30 @@ public class Cemetery {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @NotNull
-    @Length(max = 64)
-    @IsUnique
+
     @Column(name = "name", nullable = false, length = 64)
     private String name;
 
-    @NotNull
-    @Length(max = 200)
+
     @Column(name = "description", nullable = false, length = 200)
     private String description;
 
-    @NotNull
     @Column(name = "max_grid_x", nullable = false)
     private Integer maxGridX;
 
-    @NotNull
     @Column(name = "max_grid_y", nullable = false)
     private Integer maxGridY;
 
-    @NotNull
     @Column(name = "type", nullable = false)
     private Integer type;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "cemetery_id")
-    private Set<CemeteriesForbiddenPosition> forbiddenPositions;
+    private Set<CemeteriesForbiddenPosition> forbiddenPositions = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "cemetery_id")
-    private Set<Tombstone> tombstones;
+    private Set<Tombstone> tombstones = new HashSet<>();
 
 
     public Cemetery() {
@@ -135,35 +131,11 @@ public class Cemetery {
         this.tombstones = tombstones;
     }
 
-    public void setAll(Cemetery newVal) {
+    public void change(CemeteryWriteModel newVal) {
         this.setDescription(newVal.getDescription());
         this.setName(newVal.getName());
         this.setType(newVal.getType());
         this.setMaxGridX(newVal.getMaxGridX());
         this.setMaxGridY(newVal.getMaxGridY());
-        this.setForbiddenPositions(newVal.getForbiddenPositions());
     }
-
-
-    @Target({FIELD})
-    @Retention(RUNTIME)
-    @Constraint(validatedBy = IsUnique.IsUniqueValidator.class)
-    private @interface IsUnique {
-        String message() default "Name is not unique";
-
-        Class<?>[] groups() default {};
-
-        Class<? extends Payload>[] payload() default {};
-
-        class IsUniqueValidator implements ConstraintValidator<IsUnique, String> {
-            @Autowired
-            CemeteryRepository cemeteryRepository;
-
-            @Override
-            public boolean isValid(String value, ConstraintValidatorContext context) {
-                return !cemeteryRepository.existsByName(value);
-            }
-        }
-    }
-
 }

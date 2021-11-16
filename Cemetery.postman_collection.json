@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Learn Hibernate\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Bania u Cygana\",\r\n    \"type\": 1\r\n}",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Learn Hibernate\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Bania u Cygana2sd1\",\r\n    \"type\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Wow\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Ble ble\",\r\n    \"type\": 1\r\n}",
+					"raw": "{\r\n\t\"id\": 1,\r\n    \"description\": \"Wow\",\r\n    \"maxGridX\": 5,\r\n    \"maxGridY\": 6,\r\n    \"name\": \"Ble ble\",\r\n    \"type\": 1,\r\n    \"positions\": [\r\n        \r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,14 +47,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/cemetery/1",
+					"raw": "localhost:8080/cemetery/10",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"cemetery",
-						"1"
+						"10"
 					]
 				}
 			},
@@ -94,14 +94,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/11",
+					"raw": "localhost:8080/cemetery/10",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"cemetery",
-						"11"
+						"10"
 					]
 				}
 			},
@@ -113,14 +113,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/11/all",
+					"raw": "localhost:8080/cemetery/10/all",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"cemetery",
-						"11",
+						"10",
 						"all"
 					]
 				}

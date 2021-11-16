@@ -1,6 +1,8 @@
-package com.droptablepwr.cemetery.model;
+package com.droptablepwr.cemetery.model.field;
 
-public class TombstoneCemeteryField extends CemeteryField{
+import com.droptablepwr.cemetery.model.Tombstone;
+
+public class TombstoneCemeteryField extends CemeteryField {
     private final Tombstone tombstone;
 
     public TombstoneCemeteryField(Tombstone tombstone) {

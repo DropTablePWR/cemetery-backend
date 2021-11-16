@@ -1,8 +1,10 @@
 package com.droptablepwr.cemetery.controller;
 
 import com.droptablepwr.cemetery.model.Cemetery;
-import com.droptablepwr.cemetery.model.projection.CemeteryFullRead;
+import com.droptablepwr.cemetery.model.projection.CemeteryFullReadModel;
+import com.droptablepwr.cemetery.model.projection.CemeteryInfoAdvanced;
 import com.droptablepwr.cemetery.model.projection.CemeteryInfoBasic;
+import com.droptablepwr.cemetery.model.projection.CemeteryWriteModel;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -27,17 +29,17 @@ public class CemeteryController {
     }
 
     @PostMapping
-    ResponseEntity<?> createNewCemetery(@RequestBody @Valid Cemetery cemetery) {
-        Cemetery created = cemeteryRepository.save(cemetery);
+    ResponseEntity<?> createNewCemetery(@RequestBody @Valid CemeteryWriteModel cemetery) {
+        Cemetery created = cemeteryRepository.save(cemetery.generateCemetery());
         return ResponseEntity.ok(created);
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid Cemetery newVal) {
-        Optional<Cemetery> result = cemeteryRepository.findById(id);
+    ResponseEntity<?> updateCemetery(@PathVariable("id") Integer id, @RequestBody @Valid CemeteryWriteModel cemetery) {
+        Optional<Cemetery> result = cemeteryRepository.findById(id, Cemetery.class);
         if (result.isPresent()) {
             Cemetery oldVal = result.get();
-            oldVal.setAll(newVal);
+            oldVal.change(cemetery);
             cemeteryRepository.save(oldVal);
             return ResponseEntity.noContent().build();
         }
@@ -46,7 +48,7 @@ public class CemeteryController {
 
     @GetMapping("/{id}")
     ResponseEntity<?> getInfoCemetery(@PathVariable("id") Integer id) {
-        return cemeteryRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return cemeteryRepository.findById(id, CemeteryInfoAdvanced.class).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
@@ -60,8 +62,8 @@ public class CemeteryController {
 
     @GetMapping("/{id}/all")
     ResponseEntity<?> getFullCemetery(@PathVariable("id") Integer id) {
-        return cemeteryRepository.findById(id)
-                .map(CemeteryFullRead::generateCemeteryFullRead)
+        return cemeteryRepository.findById(id, Cemetery.class)
+                .map(CemeteryFullReadModel::generateCemeteryFullRead)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

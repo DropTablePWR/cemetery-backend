@@ -1,4 +1,6 @@
-package com.droptablepwr.cemetery.model;
+package com.droptablepwr.cemetery.model.field;
+
+import com.droptablepwr.cemetery.model.field.CemeteryFieldEnum;
 
 public class CemeteryField {
     private final CemeteryFieldEnum fieldEnum;
