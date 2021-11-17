@@ -4,6 +4,7 @@ import com.droptablepwr.cemetery.model.projection.TombstoneInfo;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "tombstones")
 @Entity
@@ -27,6 +28,9 @@ public class Tombstone implements TombstoneInfo {
     @OneToOne(mappedBy = "tombstone", cascade = CascadeType.ALL)
     private Guest guest;
 
+    @OneToMany(mappedBy = "tombstone", fetch = FetchType.EAGER)
+    private Set<TombstonesFeature> features;
+
     public Tombstone() {
     }
 
@@ -35,6 +39,14 @@ public class Tombstone implements TombstoneInfo {
         this.gridX = gridX;
         this.gridY = gridY;
         this.guest = guest;
+    }
+
+    public Set<TombstonesFeature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(Set<TombstonesFeature> features) {
+        this.features = features;
     }
 
     public Integer getGridY() {

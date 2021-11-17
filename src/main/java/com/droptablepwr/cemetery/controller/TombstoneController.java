@@ -2,6 +2,7 @@ package com.droptablepwr.cemetery.controller;
 
 
 import com.droptablepwr.cemetery.model.Cemetery;
+import com.droptablepwr.cemetery.model.Tombstone;
 import com.droptablepwr.cemetery.model.projection.TombstoneInfo;
 import com.droptablepwr.cemetery.model.projection.TombstoneWriteModel;
 import com.droptablepwr.cemetery.repository.CemeteryRepository;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cemetery/{cemeteryId}/tombstone")
+@RequestMapping("/api/cemetery/{cemeteryId}/tombstone")
 public class TombstoneController {
     private final CemeteryRepository cemeteryRepository;
     private final TombstoneRepository tombstoneRepository;
@@ -33,13 +34,13 @@ public class TombstoneController {
     @GetMapping("/{tombstoneId}")
     ResponseEntity<?> getSelectedTombstone(@PathVariable("cemeteryId") Integer cemeteryId, @PathVariable("tombstoneId") Integer tombstoneId) {
         if (cemeteryRepository.existsById(cemeteryId))
-            return tombstoneRepository.findById(tombstoneId, TombstoneInfo.class).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+            return tombstoneRepository.findById(tombstoneId, Tombstone.class).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{tombstoneId}")
     ResponseEntity<?> deleteSelectedTombstone(@PathVariable("cemeteryId") Integer cemeteryId, @PathVariable("tombstoneId") Integer tombstoneId) {
-        if (cemeteryRepository.existsById(cemeteryId) && tombstoneRepository.existsById(tombstoneId)) {
+        if (tombstoneRepository.existsByIdAndCemetery_Id(tombstoneId, cemeteryId)) {
             tombstoneRepository.deleteById(tombstoneId);
             return ResponseEntity.ok().build();
         }

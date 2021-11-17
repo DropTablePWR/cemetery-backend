@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cemetery")
+@RequestMapping("/api/cemetery")
 public class CemeteryController {
     private final CemeteryRepository cemeteryRepository;
 

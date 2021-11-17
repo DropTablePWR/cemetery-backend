@@ -11,16 +11,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1"
-					]
-				}
+                  "raw": "localhost:8080/api/cemetery/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1"
+                  ]
+                }
 			},
 			"response": []
 		},
@@ -30,16 +31,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/1/all",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"all"
-					]
+                  "raw": "localhost:8080/api/cemetery/1/all",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1",
+                    "all"
+                  ]
 				}
 			},
 			"response": []
@@ -50,15 +52,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery"
-					]
-				}
+                  "raw": "localhost:8080/api/cemetery",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery"
+                  ]
+                }
 			},
 			"response": []
 		},
@@ -68,16 +71,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/1/tombstone",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"tombstone"
-					]
+                  "raw": "localhost:8080/api/cemetery/1/tombstone",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1",
+                    "tombstone"
+                  ]
 				}
 			},
 			"response": []
@@ -88,17 +92,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/cemetery/1/tombstone/1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"tombstone",
-						"1"
-					]
+                  "raw": "localhost:8080/api/cemetery/1/tombstone/1",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1",
+                    "tombstone",
+                    "1"
+                  ]
 				}
 			},
 			"response": []
@@ -118,16 +123,17 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/cemetery/1/tombstone",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"tombstone"
-					]
+                  "raw": "localhost:8080/api/cemetery/1/tombstone",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1",
+                    "tombstone"
+                  ]
 				}
 			},
 			"response": []
@@ -147,40 +153,140 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/cemetery/1/tombstone",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"tombstone"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove tombstone",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/cemetery/1/tombstone/11",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cemetery",
-						"1",
-						"tombstone",
-						"11"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+                  "raw": "localhost:8080/api/cemetery/1/tombstone",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "cemetery",
+                    "1",
+                    "tombstone"
+                  ]
+                }
+            },
+          "response": []
+        },
+      {
+        "name": "Remove tombstone",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/cemetery/1/tombstone/1",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery",
+              "1",
+              "tombstone",
+              "1"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get all features",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/feature",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "feature"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get all features for tombstone",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/cemetery/1/tombstone/2/feature",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery",
+              "1",
+              "tombstone",
+              "2",
+              "feature"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Add new feature to tombstone",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n    \"featureId\": 1,\r\n    \"place\": \"Edge\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "localhost:8080/api/cemetery/1/tombstone/2/feature",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery",
+              "1",
+              "tombstone",
+              "2",
+              "feature"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Remove selected feature from tombstone",
+        "request": {
+          "method": "DELETE",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/cemetery/1/tombstone/1/feature/1",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery",
+              "1",
+              "tombstone",
+              "1",
+              "feature",
+              "1"
+            ]
+          }
+        },
+        "response": []
+      }
+    ]
 }
