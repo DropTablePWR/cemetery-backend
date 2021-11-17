@@ -1,11 +1,11 @@
 INSERT INTO features (name, code)
-VALUES ('Kwiaty', 'flowers');
+VALUES ('Flowers', 'flowers');
 
 INSERT INTO features (name, code)
-VALUES ('Znicz', 'candle');
+VALUES ('Cemetery candle', 'candle');
 
 INSERT INTO features (name, code)
-VALUES ('Pieniądze', 'money');
+VALUES ('Money', 'money');
 
 
 INSERT INTO tombstones_features (tombstone_id, feature_id, place)
