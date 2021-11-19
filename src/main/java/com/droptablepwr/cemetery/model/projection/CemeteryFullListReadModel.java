@@ -17,15 +17,21 @@ public class CemeteryFullListReadModel {
 
     private final Integer type;
 
+    private final Integer maxGridX;
+
+    private final Integer maxGridY;
+
     private final List<GridPosition> forbiddenPositions;
 
     private final Set<Tombstone> tombstones;
 
-    private CemeteryFullListReadModel(Integer id, String name, String description, Integer type, List<GridPosition> forbiddenPositions, Set<Tombstone> tombstones) {
+    private CemeteryFullListReadModel(Integer id, String name, String description, Integer type, Integer maxGridX, Integer maxGridY, List<GridPosition> forbiddenPositions, Set<Tombstone> tombstones) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.type = type;
+        this.maxGridX = maxGridX;
+        this.maxGridY = maxGridY;
         this.forbiddenPositions = forbiddenPositions;
         this.tombstones = tombstones;
     }
@@ -36,6 +42,8 @@ public class CemeteryFullListReadModel {
                 cemetery.getName(),
                 cemetery.getDescription(),
                 cemetery.getType(),
+                cemetery.getMaxGridX(),
+                cemetery.getMaxGridY(),
                 generateForbiddenPositions(cemetery),
                 cemetery.getTombstones()
         );
@@ -66,6 +74,14 @@ public class CemeteryFullListReadModel {
             }
         }
         return result;
+    }
+
+    public Integer getMaxGridX() {
+        return maxGridX;
+    }
+
+    public Integer getMaxGridY() {
+        return maxGridY;
     }
 
     public Integer getId() {
