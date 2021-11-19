@@ -1,6 +1,7 @@
 package com.droptablepwr.cemetery.controller;
 
 import com.droptablepwr.cemetery.model.Cemetery;
+import com.droptablepwr.cemetery.model.projection.CemeteryFullListReadModel;
 import com.droptablepwr.cemetery.model.projection.CemeteryFullReadModel;
 import com.droptablepwr.cemetery.model.projection.CemeteryInfoAdvanced;
 import com.droptablepwr.cemetery.model.projection.CemeteryInfoBasic;
@@ -63,6 +64,15 @@ public class CemeteryController {
     ResponseEntity<?> getFullCemetery(@PathVariable("id") Integer id) {
         return cemeteryRepository.findById(id, Cemetery.class)
                 .map(CemeteryFullReadModel::generateCemeteryFullRead)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+    @GetMapping("/{id}/list")
+    ResponseEntity<?> getFullListCemetery(@PathVariable("id") Integer id) {
+        return cemeteryRepository.findById(id, Cemetery.class)
+                .map(CemeteryFullListReadModel::generateCemeteryFullListRead)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

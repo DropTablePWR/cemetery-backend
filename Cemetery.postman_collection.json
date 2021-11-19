@@ -42,26 +42,47 @@
                     "1",
                     "all"
                   ]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all cemeteries",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-                  "raw": "localhost:8080/api/cemetery",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "cemetery"
-                  ]
                 }
+            },
+          "response": []
+        },
+      {
+        "name": "Get full cemetery in list for UNITY",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/cemetery/1/list",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery",
+              "1",
+              "list"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "Get all cemeteries",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "localhost:8080/api/cemetery",
+            "host": [
+              "localhost"
+            ],
+            "port": "8080",
+            "path": [
+              "api",
+              "cemetery"
+            ]
+          }
 			},
 			"response": []
 		},
@@ -82,7 +103,7 @@
                     "1",
                     "tombstone"
                   ]
-				}
+                }
 			},
 			"response": []
 		},
@@ -104,7 +125,7 @@
                     "tombstone",
                     "1"
                   ]
-				}
+                }
 			},
 			"response": []
 		},
@@ -134,7 +155,7 @@
                     "1",
                     "tombstone"
                   ]
-				}
+                }
 			},
 			"response": []
 		},
@@ -143,28 +164,28 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"gridY\": 1,\r\n    \"gridX\": 0,\r\n    \"guest\": {\r\n        \"birthDate\": \"1981-11-03\",\r\n        \"lastName\": \"Tytus\",\r\n        \"firstName\": \"Bomba\",\r\n        \"deathDate\": \"2020-11-16\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-                  "raw": "localhost:8080/api/cemetery/1/tombstone",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8080",
-                  "path": [
-                    "api",
-                    "cemetery",
-                    "1",
-                    "tombstone"
-                  ]
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"gridY\": 1,\r\n    \"gridX\": 0,\r\n    \"guest\": {\r\n        \"birthDate\": \"1981-11-03\",\r\n        \"lastName\": \"Tytus\",\r\n        \"firstName\": \"Bomba\",\r\n        \"deathDate\": \"2020-11-16\"\r\n    }\r\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
                 }
+              },
+              "url": {
+                "raw": "localhost:8080/api/cemetery/1/tombstone",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "api",
+                  "cemetery",
+                  "1",
+                  "tombstone"
+                ]
+              }
             },
           "response": []
         },
