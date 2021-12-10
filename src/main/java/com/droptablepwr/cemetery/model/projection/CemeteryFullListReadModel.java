@@ -108,11 +108,11 @@ public class CemeteryFullListReadModel {
         return tombstones;
     }
 
-    private static class GridPosition {
+    static class GridPosition {
         private final Integer gridX;
         private final Integer gridY;
 
-        private GridPosition(Integer gridX, Integer gridY) {
+        GridPosition(Integer gridX, Integer gridY) {
             this.gridX = gridX;
             this.gridY = gridY;
         }
