@@ -9,9 +9,12 @@ import javax.validation.constraints.NotNull;
 
 public class TombstonesFeatureWriteModel {
     @NotNull
-    private final Integer featureId;
+    private Integer featureId;
     @NotBlank
-    private final String place;
+    private String place;
+
+    public TombstonesFeatureWriteModel() {
+    }
 
     public TombstonesFeatureWriteModel(Integer featureId, String place) {
         this.featureId = featureId;
