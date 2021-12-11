@@ -4,6 +4,7 @@ import com.droptablepwr.cemetery.model.projection.TombstoneInfo;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "tombstones")
@@ -29,7 +30,7 @@ public class Tombstone implements TombstoneInfo {
     private Guest guest;
 
     @OneToMany(mappedBy = "tombstone", fetch = FetchType.EAGER)
-    private Set<TombstonesFeature> features;
+    private Set<TombstonesFeature> features = new HashSet<>();
 
     public Tombstone() {
     }

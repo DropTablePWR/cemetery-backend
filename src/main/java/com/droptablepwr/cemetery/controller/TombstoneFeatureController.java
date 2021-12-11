@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -38,6 +39,8 @@ public class TombstoneFeatureController {
         Optional<Tombstone> tombstone = tombstoneRepository.findByIdAndCemetery_Id(tombstoneId, cemeteryId);
         Optional<Feature> feature = featureRepository.findById(model.getFeatureId());
         if (tombstone.isPresent() && feature.isPresent()) {
+            if (tombstone.get().getFeatures().stream().anyMatch(tombstonesFeature -> Objects.equals(tombstonesFeature.getPlace(), model.getPlace())))
+                return ResponseEntity.badRequest().build();
             return ResponseEntity.ok(tombstonesFeatureRepository.save(model.toFeature(tombstone.get(), feature.get())));
         }
         return ResponseEntity.notFound().build();

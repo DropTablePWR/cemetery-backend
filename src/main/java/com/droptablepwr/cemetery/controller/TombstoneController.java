@@ -50,7 +50,14 @@ public class TombstoneController {
     @PostMapping
     ResponseEntity<?> insertTombstone(@PathVariable("cemeteryId") Integer cemeteryId, @RequestBody @Valid TombstoneWriteModel writeModel) {
         Optional<Cemetery> cemetery = cemeteryRepository.findById(cemeteryId);
-
-        return cemetery.map(c -> tombstoneRepository.save(writeModel.toTombstone(c))).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        if (cemetery.isPresent()) {
+            if (tombstoneRepository.existsByCemeteryAndGridXAndGridY(cemetery.get(), writeModel.getGridX(), writeModel.getGridY())
+                    || writeModel.getGridX() < 0 || writeModel.getGridY() < 0 || writeModel.getGridX() >= cemetery.get().getMaxGridX() || writeModel.getGridY() >= cemetery.get().getMaxGridY()) {
+                return ResponseEntity.badRequest().build();
+            } else {
+                return ResponseEntity.ok(tombstoneRepository.save(writeModel.toTombstone(cemetery.get())));
+            }
+        }
+        return ResponseEntity.notFound().build();
     }
 }

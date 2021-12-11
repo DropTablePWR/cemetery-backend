@@ -1,5 +1,6 @@
 package com.droptablepwr.cemetery.repository;
 
+import com.droptablepwr.cemetery.model.Cemetery;
 import com.droptablepwr.cemetery.model.Tombstone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +12,8 @@ public interface TombstoneRepository extends JpaRepository<Tombstone, Integer> {
     Boolean existsByIdAndCemetery_Id(@Param("id") Integer id, @Param("cemeteryId") Integer cemeteryId);
 
     Optional<Tombstone> findByIdAndCemetery_Id(@Param("id") Integer id, @Param("cemeteryId") Integer cemeteryId);
+
+    Boolean existsByCemeteryAndGridXAndGridY(Cemetery cemetery, Integer gridX, Integer gridY);
 
     //    @Query("select c from Cemetery c")
     <T> List<T> findBy(Class<T> type);
